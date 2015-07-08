@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface Rule {
 
-    Collection<Complaint> check(File file);
+    Collection<Complaint> check(File file) throws Exception;
     Fixer getFixer();
 
 }
