@@ -1,5 +1,6 @@
 package se.vandmo.textchecker.maven;
 
+import com.google.common.io.Files;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Collections2.transform;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Arrays.asList;
@@ -68,7 +70,8 @@ public final class CheckMojo extends AbstractMojo {
     private Collection<ComplaintWithFileInfo> getComplaintsFor(File file) throws Exception {
         List<ComplaintWithFileInfo> complaints = newArrayList();
         for (Rule rule : getRulesFor(file)) {
-            Collection<Complaint> complaintsFromRule = rule.check(file);
+            final String content = Files.toString(file, UTF_8);
+            Collection<Complaint> complaintsFromRule = rule.check(content);
             if (complaintsFromRule != null) {
                 Collection<ComplaintWithFileInfo> complaintsWithFile = transform(complaintsFromRule,
                     complaint -> new ComplaintWithFileInfo(complaint, relativeFileNameFor(file)));
