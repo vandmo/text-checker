@@ -26,7 +26,7 @@ public final class CheckMojo extends AbstractMojo {
             readonly = true)
     private File baseFolder;
 
-    private final Checker checker = new Checker();
+    private final Checker checker = new Checker(new RulesResolver());
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -34,7 +34,7 @@ public final class CheckMojo extends AbstractMojo {
         try {
             addComplaintsForFiles(complaints);
         } catch (Exception ex) {
-            throw new MojoExecutionException("Failure", ex);
+            throw new RuntimeException(ex);
         }
         if (!complaints.isEmpty()) {
             logAndFail(complaints);

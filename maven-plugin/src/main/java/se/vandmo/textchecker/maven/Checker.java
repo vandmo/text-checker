@@ -7,13 +7,18 @@ import java.util.List;
 
 import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Arrays.asList;
 
 public final class Checker {
+    
+    private final RulesResolver rulesResolver;
+
+    public Checker(RulesResolver rulesResolver) {
+        this.rulesResolver = rulesResolver;
+    }
 
     public Collection<Complaint> getComplaintsFor(File file) throws Exception {
         List<Complaint> complaints = newArrayList();
-        for (Rule rule : getRulesFor(file)) {
+        for (Rule rule : rulesResolver.getRulesFor(file)) {
             final String content = Files.toString(file, UTF_8);
             Collection<Complaint> complaintsFromRule = rule.check(content);
             if (complaintsFromRule != null) {
@@ -21,10 +26,6 @@ public final class Checker {
             }
         }
         return complaints;
-    }
-
-    private Iterable<Rule> getRulesFor(File file) {
-        return asList(new NoTabsRule());
     }
     
 }
