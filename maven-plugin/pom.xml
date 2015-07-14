@@ -7,12 +7,12 @@
     <parent>
         <groupId>se.vandmo</groupId>
         <artifactId>text-checker</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <version>0.3-SNAPSHOT</version>
     </parent>
     
     <groupId>se.vandmo</groupId>
     <artifactId>text-checker-maven-plugin</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>Text Checker - Text Checker Maven Plugin</name>

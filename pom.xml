@@ -6,7 +6,7 @@
 
     <groupId>se.vandmo</groupId>
     <artifactId>text-checker</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Text Checker Parent/Reactor</name>
