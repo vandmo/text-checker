@@ -39,6 +39,11 @@
     <profiles>
         <profile>
             <id>gpg.sign</id>
+            <activation>
+                <property>
+                    <name>!skip.gpg.sign</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
