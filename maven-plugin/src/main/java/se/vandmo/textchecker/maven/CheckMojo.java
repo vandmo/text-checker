@@ -56,7 +56,7 @@ public final class CheckMojo extends AbstractMojo {
     private void logAndFail(List<ComplaintWithFileInfo> complaints) throws MojoFailureException {
         log(complaints);
         throw new MojoFailureException(
-                "One or more rules was broken. Try running mvn se.vandmo.text-checker:text-checker-maven-plugin:fix to fix the complaints.");
+                "One or more rules was broken. Try running \"mvn se.vandmo:text-checker-maven-plugin:fix\" to fix the complaints.");
     }
 
     private void log(List<ComplaintWithFileInfo> complaints) {
