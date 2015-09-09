@@ -6,7 +6,7 @@ import se.vandmo.textchecker.maven.Fixer;
 import static se.vandmo.textchecker.maven.utils.Utils.modifyLines;
 
 
-public final class MakeIndentationEven implements Fixer {
+public final class ChangeIndentationToFour implements Fixer {
 
     @Override
     public String fix(String content) {
@@ -16,11 +16,12 @@ public final class MakeIndentationEven implements Fixer {
     private String modifyLine(String line) {
         int index = indexOfAnyBut(line, ' ');
         if (index < 0) {
+            // no whitespace in line
             return line;
         }
-        if ((index & 1) == 1) {
+        if (index % 4 != 0) {
             String afterIndentation = line.substring(index);
-            return repeat(' ', index + 1) + afterIndentation;
+            return repeat("    ", (index / 4) + 1) + afterIndentation;
         }
         return line;
     }

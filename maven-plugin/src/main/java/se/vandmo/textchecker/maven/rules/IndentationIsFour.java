@@ -8,11 +8,11 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
-import se.vandmo.textchecker.maven.fixers.MakeIndentationEven;
+import se.vandmo.textchecker.maven.fixers.ChangeIndentationToFour;
 import static se.vandmo.textchecker.maven.utils.Utils.allLinesAreOk;
 
 
-public final class EvenIndentation implements Rule {
+public final class IndentationIsFour implements Rule {
 
     @Override
     public Collection<Complaint> check(String content) {
@@ -24,18 +24,20 @@ public final class EvenIndentation implements Rule {
 
     private boolean isLineOk(String line) {
         if (isBlank(line)) {
+            // ignore blank lines when checking, could be interpreted as trailing whitespace
             return true;
         }
         int index = indexOfAnyBut(line, ' ');
         if (index < 0) {
+            // no whitespace in line
             return true;
         }
-        return (index & 1) == 0;
+        return index % 4 == 0;
     }
 
     @Override
     public Fixer getFixer() {
-        return new MakeIndentationEven();
+        return new ChangeIndentationToFour();
     }
 
 }
