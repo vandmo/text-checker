@@ -1,12 +1,11 @@
 package se.vandmo.textchecker.maven;
 
 import java.io.File;
+import static java.util.Arrays.asList;
 import java.util.Collection;
+import static org.apache.commons.io.FileUtils.listFiles;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-
-import static java.util.Arrays.asList;
-import static org.apache.commons.io.FileUtils.listFiles;
 
 
 public final class FileSupplier {
@@ -24,7 +23,7 @@ public final class FileSupplier {
                 new IOFileFilter() {
                     @Override
                     public boolean accept(File file) {
-                        return !file.isDirectory() || "target".equals(file.getName());
+                        return file.isDirectory() && !"target".equals(file.getName());
                     }
                     @Override
                     public boolean accept(File file, String string) {
