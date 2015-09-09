@@ -2,15 +2,15 @@ package se.vandmo.textchecker.maven.fixers;
 
 import static org.apache.commons.lang3.StringUtils.indexOfAnyBut;
 import static org.apache.commons.lang3.StringUtils.repeat;
+import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Fixer;
-import static se.vandmo.textchecker.maven.utils.Utils.modifyLines;
 
 
 public final class ChangeIndentationToFour implements Fixer {
 
     @Override
-    public String fix(String content) {
-        return modifyLines(content, this::modifyLine);
+    public void fix(Content content) {
+        content.modifyLines(this::modifyLine);
     }
 
     private String modifyLine(String line) {

@@ -1,5 +1,6 @@
 package se.vandmo.textchecker.maven;
 
+import static com.google.common.base.Charsets.UTF_8;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +11,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-
-import static com.google.common.base.Charsets.UTF_8;
+import static se.vandmo.textchecker.maven.ContentType.TEXT;
 
 @Mojo(
         name = "fix",
@@ -47,7 +47,7 @@ public final class FixMojo extends AbstractMojo {
         for (Rule rule : rulesResolver.getRulesFor(file)) {
             Fixer fixer = rule.getFixer();
             if (fixer != null) {
-                content = fixer.fix(content);
+                fixer.fix(new Content(TEXT, content));
             }
         }
         Files.write(content, file, UTF_8);

@@ -6,17 +6,17 @@ import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.StringUtils.indexOfAnyBut;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import se.vandmo.textchecker.maven.Complaint;
+import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.ChangeIndentationToFour;
-import static se.vandmo.textchecker.maven.utils.Utils.allLinesAreOk;
 
 
 public final class IndentationIsFour implements Rule {
 
     @Override
-    public Collection<Complaint> check(String content) {
-        if (!allLinesAreOk(content, this::isLineOk)) {
+    public Collection<Complaint> check(Content content) {
+        if (!content.checkLines(this::isLineOk)) {
             return newArrayList(new Complaint("Indentation needs to be a multiple of four"));
         }
         return emptyList();

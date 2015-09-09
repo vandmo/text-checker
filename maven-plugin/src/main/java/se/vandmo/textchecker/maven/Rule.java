@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public interface Rule {
 
-    Collection<Complaint> check(String content);
+    Collection<Complaint> check(Content content);
     Fixer getFixer();
 
 }

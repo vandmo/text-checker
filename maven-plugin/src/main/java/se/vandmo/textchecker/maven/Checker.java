@@ -1,12 +1,12 @@
 package se.vandmo.textchecker.maven;
 
+import static com.google.common.base.Charsets.UTF_8;
+import static com.google.common.collect.Lists.newArrayList;
 import com.google.common.io.Files;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-
-import static com.google.common.base.Charsets.UTF_8;
-import static com.google.common.collect.Lists.newArrayList;
+import static se.vandmo.textchecker.maven.ContentType.TEXT;
 
 public final class Checker {
     
@@ -20,7 +20,7 @@ public final class Checker {
         List<Complaint> complaints = newArrayList();
         for (Rule rule : rulesResolver.getRulesFor(file)) {
             final String content = Files.toString(file, UTF_8);
-            Collection<Complaint> complaintsFromRule = rule.check(content);
+            Collection<Complaint> complaintsFromRule = rule.check(new Content(TEXT, content));
             if (complaintsFromRule != null) {
                 complaints.addAll(complaintsFromRule);
             }
