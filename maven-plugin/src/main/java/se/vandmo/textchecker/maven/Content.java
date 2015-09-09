@@ -46,12 +46,12 @@ public class Content {
         this.data = data;
     }
 
-    public String modifyLines(LineModifier modifier) {
+    public void modifyLines(LineModifier modifier) {
         StringBuilder result = new StringBuilder();
         for (String line : linePattern.split(data)) {
             result.append(modifier.modify(line)).append(lineSeparator());
         }
-        return result.toString();
+        data = result.toString();
     }
     
     public boolean checkLines(LineChecker checker) {

@@ -43,7 +43,6 @@ public final class FixMojo extends AbstractMojo {
 
     private void fix(File file) throws IOException {
         Content content = contentFromFile(file);
-                
         for (Rule rule : rulesResolver.getRulesFor(file)) {
             Fixer fixer = rule.getFixer();
             if (fixer != null) {
