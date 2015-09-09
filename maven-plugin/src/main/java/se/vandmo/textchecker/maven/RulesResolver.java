@@ -1,5 +1,6 @@
 package se.vandmo.textchecker.maven;
 
+import se.vandmo.textchecker.maven.rules.NoTabsRule;
 import java.io.File;
 import java.util.Collection;
 

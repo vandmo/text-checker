@@ -1,4 +1,6 @@
-package se.vandmo.textchecker.maven;
+package se.vandmo.textchecker.maven.fixers;
+
+import se.vandmo.textchecker.maven.Fixer;
 
 
 public final class TabsToSpaces implements Fixer {

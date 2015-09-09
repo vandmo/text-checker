@@ -1,6 +1,10 @@
-package se.vandmo.textchecker.maven;
+package se.vandmo.textchecker.maven.rules;
 
+import se.vandmo.textchecker.maven.fixers.TabsToSpaces;
 import java.util.Collection;
+import se.vandmo.textchecker.maven.Complaint;
+import se.vandmo.textchecker.maven.Fixer;
+import se.vandmo.textchecker.maven.Rule;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.emptyList;

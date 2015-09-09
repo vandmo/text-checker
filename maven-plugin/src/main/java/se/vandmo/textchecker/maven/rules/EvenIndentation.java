@@ -1,7 +1,11 @@
-package se.vandmo.textchecker.maven;
+package se.vandmo.textchecker.maven.rules;
 
+import se.vandmo.textchecker.maven.fixers.MakeIndentationEven;
 import static com.google.common.collect.Lists.newArrayList;
 import java.util.Collection;
+import se.vandmo.textchecker.maven.Complaint;
+import se.vandmo.textchecker.maven.Fixer;
+import se.vandmo.textchecker.maven.Rule;
 import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.StringUtils.indexOfAnyBut;
 

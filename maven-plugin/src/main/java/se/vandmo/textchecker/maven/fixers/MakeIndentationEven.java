@@ -1,5 +1,6 @@
-package se.vandmo.textchecker.maven;
+package se.vandmo.textchecker.maven.fixers;
 
+import se.vandmo.textchecker.maven.Fixer;
 import static org.apache.commons.lang3.StringUtils.indexOfAnyBut;
 import static org.apache.commons.lang3.StringUtils.repeat;
 
