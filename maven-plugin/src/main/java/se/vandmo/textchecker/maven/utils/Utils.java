@@ -19,7 +19,7 @@ public final class Utils {
     
     public static boolean allLinesAreOk(String content, LineChecker checker) {
         for (String line : linePattern.split(content)) {
-            if (checker.check(line)) {
+            if (!checker.check(line)) {
                 return false;
             }
         }

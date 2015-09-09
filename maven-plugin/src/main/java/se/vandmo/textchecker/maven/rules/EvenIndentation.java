@@ -16,16 +16,21 @@ public final class EvenIndentation implements Rule {
 
     @Override
     public Collection<Complaint> check(String content) {
-        boolean allLinesAreOk = allLinesAreOk(content, (String line) -> {
-            if (isBlank(line)) return true;
-            int index = indexOfAnyBut(line, ' ');
-            return (index & 1) == 0;
-        });
-        
-        if (!allLinesAreOk) {
+        if (!allLinesAreOk(content, this::isLineOk)) {
             return newArrayList(new Complaint("Indentation needs to be an even number of spaces"));
         }
         return emptyList();
+    }
+
+    private boolean isLineOk(String line) {
+        if (isBlank(line)) {
+            return true;
+        }
+        int index = indexOfAnyBut(line, ' ');
+        if (index < 0) {
+            return true;
+        }
+        return (index & 1) == 0;
     }
 
     @Override
