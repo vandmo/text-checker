@@ -17,7 +17,7 @@ public final class IndentationIsFour implements Rule {
     @Override
     public Collection<Complaint> check(String content) {
         if (!allLinesAreOk(content, this::isLineOk)) {
-            return newArrayList(new Complaint("Indentation needs to be an even number of spaces"));
+            return newArrayList(new Complaint("Indentation needs to be a multiple of four"));
         }
         return emptyList();
     }
