@@ -10,7 +10,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.emptyList;
 
 
-public final class NoTabsRule implements Rule {
+public final class NoTabs implements Rule {
 
     @Override
     public Collection<Complaint> check(String content) {
