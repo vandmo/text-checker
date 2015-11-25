@@ -8,7 +8,7 @@ public final class TabsToSpaces implements Fixer {
 
     @Override
     public void fix(Content content) {
-        content.data(content.data().replace("\t", "    "));
+        content.data(content.data().replace("\t", "  "));
     }
 
 }
