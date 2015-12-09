@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.Collection;
 
 import se.vandmo.textchecker.maven.rules.ConsistentLineSeparator;
+import se.vandmo.textchecker.maven.rules.EndsWithLineSeparator;
 import se.vandmo.textchecker.maven.rules.NoTabs;
 import se.vandmo.textchecker.maven.rules.NoTrailingWhitespaceOnNonBlankLines;
 import se.vandmo.textchecker.maven.rules.NoWhitespaceOnBlankLines;
@@ -20,7 +21,8 @@ public final class RulesResolver {
       new NoTrailingWhitespaceOnNonBlankLines(),
       new NoWhitespaceOnBlankLines(),
       new NotExecutable(),
-      new ConsistentLineSeparator());
+      new ConsistentLineSeparator(),
+      new EndsWithLineSeparator());
   }
 
 }
