@@ -10,8 +10,8 @@ import se.vandmo.textchecker.maven.rules.NoTabs;
 
 public final class RulesResolver {
 
-    public Collection<Rule> getRulesFor(File file) {
-        return asList(new NoTabs() /*, new IndentationIsFour()*/);
-    }
+  public Collection<Rule> getRulesFor(File file) {
+    return asList(new NoTabs() /*, new IndentationIsFour()*/);
+  }
 
 }

@@ -18,49 +18,49 @@ import se.vandmo.textchecker.maven.fixers.ChangeIndentationToEven;
 
 public final class IndentationIsEven implements Rule {
 
-    @Override
-    public Collection<Complaint> check(Content content) {
-        if (hasInvalidIndentation(content)) {
-            return newArrayList(new Complaint("Indentation needs to be an even number"));
-        }
-        return emptyList();
+  @Override
+  public Collection<Complaint> check(Content content) {
+    if (hasInvalidIndentation(content)) {
+      return newArrayList(new Complaint("Indentation needs to be an even number"));
     }
+    return emptyList();
+  }
 
-    private boolean hasInvalidIndentation(Content content) {
-        return !content.checkLines((line) -> {
-            return isLineOk(line, content.type());
-        });
-    }
+  private boolean hasInvalidIndentation(Content content) {
+    return !content.checkLines((line) -> {
+      return isLineOk(line, content.type());
+    });
+  }
 
-    private boolean isLineOk(String line, ContentType contentType) {
-        if (isBlank(line)) {
-            // ignore blank lines when checking, could be interpreted as trailing whitespace on empty line
-            return true;
-        }
-        return isOk(line, contentType);
+  private boolean isLineOk(String line, ContentType contentType) {
+    if (isBlank(line)) {
+      // ignore blank lines when checking, could be interpreted as trailing whitespace on empty line
+      return true;
     }
+    return isOk(line, contentType);
+  }
 
-    public static boolean isOk(String line, ContentType contentType) {
-        int index = indexOfAnyBut(line, ' ');
-        if (index < 0) {
-            // no whitespace in line
-            return true;
-        }
-        if (index % 2 == 0) {
-            return true;
-        }
-        if (contentType.equals(JAVA)) {
-            String afterIndentation = line.substring(index);
-            if (afterIndentation.startsWith("*")) {
-                return true;
-            }
-        }
-        return false;
+  public static boolean isOk(String line, ContentType contentType) {
+    int index = indexOfAnyBut(line, ' ');
+    if (index < 0) {
+      // no whitespace in line
+      return true;
     }
+    if (index % 2 == 0) {
+      return true;
+    }
+    if (contentType.equals(JAVA)) {
+      String afterIndentation = line.substring(index);
+      if (afterIndentation.startsWith("*")) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-    @Override
-    public Fixer getFixer() {
-        return new ChangeIndentationToEven();
-    }
+  @Override
+  public Fixer getFixer() {
+    return new ChangeIndentationToEven();
+  }
 
 }
