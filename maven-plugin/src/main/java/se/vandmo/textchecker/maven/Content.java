@@ -22,19 +22,20 @@ public class Content {
   private static final Pattern linePattern = compile("\\r?\\n");
 
   private final ContentType type;
-
   private String data;
+  private boolean executable;
 
-  public Content(ContentType type, String data) {
+  public Content(ContentType type, String data, boolean executable) {
     checkNotNull(type);
     checkNotNull(data);
     this.data = data;
     this.type = type;
+    this.executable = executable;
   }
 
   public static Content contentFromFile(File file) throws IOException {
     String data = Files.toString(file, UTF_8);
-    return new Content(guessType(file), data);
+    return new Content(guessType(file), data, file.canExecute());
   }
 
   public ContentType type() {
@@ -47,6 +48,14 @@ public class Content {
 
   public void data(String data) {
     this.data = data;
+  }
+
+  public boolean executable() {
+    return executable;
+  }
+
+  public void executable(boolean executable) {
+    this.executable = executable;
   }
 
   public void modifyLines(LineModifier modifier) {
@@ -75,6 +84,7 @@ public class Content {
 
   public void writeTo(File file) throws IOException {
     Files.write(data, file, UTF_8);
+    file.setExecutable(executable);
   }
 
 }
