@@ -1,6 +1,6 @@
 package se.vandmo.textchecker.maven.fixers;
 
-import static org.codehaus.plexus.util.StringUtils.isNotBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static se.vandmo.textchecker.maven.rules.NoTrailingWhitespaceOnNonBlankLines.ENDS_WITH_WHITESPACE;
 
 import java.util.regex.Matcher;
@@ -19,7 +19,7 @@ public final class RemoveTrailingWhitespaceOnNonBlankLines implements Fixer {
   }
 
   private String possiblyFixLine(String line) {
-    if (isNotBlank(line)) {
+    if (isBlank(line)) {
       return line;
     }
     Matcher matcher = ENDS_WITH_WHITESPACE.matcher(line);
