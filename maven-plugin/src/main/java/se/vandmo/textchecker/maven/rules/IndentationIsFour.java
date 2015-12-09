@@ -11,11 +11,10 @@ import java.util.Collection;
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.ContentType;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.ChangeIndentationToFour;
 
-
+@FixWith(ChangeIndentationToFour.class)
 public final class IndentationIsFour implements Rule {
 
   @Override
@@ -56,11 +55,6 @@ public final class IndentationIsFour implements Rule {
       }
     }
     return false;
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new ChangeIndentationToFour();
   }
 
 }

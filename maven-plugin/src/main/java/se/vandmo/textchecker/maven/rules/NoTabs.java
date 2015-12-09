@@ -7,11 +7,10 @@ import java.util.Collection;
 
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.TabsToSpaces;
 
-
+@FixWith(TabsToSpaces.class)
 public final class NoTabs implements Rule {
 
   @Override
@@ -20,11 +19,6 @@ public final class NoTabs implements Rule {
       return newArrayList(new Complaint("File contains tab characters"));
     }
     return emptyList();
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new TabsToSpaces();
   }
 
 }

@@ -13,6 +13,8 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
+import se.vandmo.textchecker.maven.rules.FixWith;
+
 
 @Mojo(
   name = "fix",
@@ -46,7 +48,7 @@ public final class FixMojo extends AbstractMojo {
   private void fix(File file) throws IOException {
     Content content = contentFromFile(file);
     for (Rule rule : rulesResolver.getRulesFor(file)) {
-      Fixer fixer = rule.getFixer();
+      Fixer fixer = getFixer(rule);
       if (fixer != null) {
         fixer.fix(content);
       }
@@ -57,6 +59,15 @@ public final class FixMojo extends AbstractMojo {
   private boolean hasComplaints(File file) throws Exception {
     Collection<Complaint> complaints = checker.getComplaintsFor(file);
     return complaints != null && complaints.size() > 0;
+  }
+
+  private Fixer getFixer(Rule rule) {
+    Class<? extends Fixer> fixerClass = rule.getClass().getAnnotation(FixWith.class).value();
+    try {
+      return fixerClass.newInstance();
+    } catch (InstantiationException|IllegalAccessException ex) {
+      throw new RuntimeException(ex);
+    }
   }
 
 }

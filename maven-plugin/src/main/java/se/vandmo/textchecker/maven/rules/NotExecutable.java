@@ -7,11 +7,10 @@ import java.util.Collection;
 
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.MakeNotExecutable;
 
-
+@FixWith(MakeNotExecutable.class)
 public final class NotExecutable implements Rule {
 
   @Override
@@ -20,11 +19,6 @@ public final class NotExecutable implements Rule {
       return newArrayList(new Complaint("File is executable"));
     }
     return emptyList();
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new MakeNotExecutable();
   }
 
 }

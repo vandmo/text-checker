@@ -8,11 +8,10 @@ import java.util.Collection;
 
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.RemoveWhitespaceOnBlankLines;
 
-
+@FixWith(RemoveWhitespaceOnBlankLines.class)
 public final class NoWhitespaceOnBlankLines implements Rule {
 
   @Override
@@ -25,11 +24,6 @@ public final class NoWhitespaceOnBlankLines implements Rule {
 
   public static boolean isOk(String line) {
     return isNotBlank(line) || line.length() == 0;
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new RemoveWhitespaceOnBlankLines();
   }
 
 }

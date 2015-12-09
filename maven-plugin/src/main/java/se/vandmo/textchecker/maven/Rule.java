@@ -7,6 +7,4 @@ public interface Rule {
 
   Collection<Complaint> check(Content content);
 
-  Fixer getFixer();
-
 }

@@ -8,11 +8,10 @@ import java.util.regex.Pattern;
 
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.MakeLineSeparatorsConsistent;
 
-
+@FixWith(MakeLineSeparatorsConsistent.class)
 public final class ConsistentLineSeparator implements Rule {
 
   private static final Pattern N_WITHOUT_PRECEEDING_R = Pattern.compile("[^\r]\n");
@@ -23,11 +22,6 @@ public final class ConsistentLineSeparator implements Rule {
       return newArrayList(new Complaint("File has inconsistent line endings"));
     }
     return emptyList();
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new MakeLineSeparatorsConsistent();
   }
 
   public static boolean isOk(String data) {

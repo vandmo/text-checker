@@ -9,11 +9,10 @@ import java.util.regex.Pattern;
 
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
-import se.vandmo.textchecker.maven.Fixer;
 import se.vandmo.textchecker.maven.Rule;
 import se.vandmo.textchecker.maven.fixers.RemoveTrailingWhitespaceOnNonBlankLines;
 
-
+@FixWith(RemoveTrailingWhitespaceOnNonBlankLines.class)
 public final class NoTrailingWhitespaceOnNonBlankLines implements Rule {
 
   public static final Pattern ENDS_WITH_WHITESPACE = Pattern.compile("(?<beforetrailing>.*)\\s+$");
@@ -28,11 +27,6 @@ public final class NoTrailingWhitespaceOnNonBlankLines implements Rule {
 
   public static boolean isOk(String line) {
     return isBlank(line) || !ENDS_WITH_WHITESPACE.matcher(line).matches();
-  }
-
-  @Override
-  public Fixer getFixer() {
-    return new RemoveTrailingWhitespaceOnNonBlankLines();
   }
 
 }
