@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
-import se.vandmo.textchecker.maven.rules.FixWith;
+import se.vandmo.textchecker.maven.annotations.FixWith;
 
 
 @Mojo(

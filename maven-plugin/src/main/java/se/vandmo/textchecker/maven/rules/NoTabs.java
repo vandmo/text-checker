@@ -1,5 +1,7 @@
 package se.vandmo.textchecker.maven.rules;
 
+import se.vandmo.textchecker.maven.annotations.FixWith;
+
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.emptyList;
 
