@@ -9,8 +9,12 @@ import java.util.Collection;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 
+import com.google.common.collect.ImmutableSet;
+
 
 public final class FileSupplier {
+
+  private static final ImmutableSet<String> EXCLUDES = ImmutableSet.of("target", ".git", ".junk");
 
   private final File baseFolder;
 
@@ -24,12 +28,12 @@ public final class FileSupplier {
         asList(".java", ".txt", ".xml", ".js", ".html")),
       new IOFileFilter() {
         @Override
-        public boolean accept(File file) {
-          return file.isDirectory() && !"target".equals(file.getName());
+        public boolean accept(File dir) {
+          return dir.isDirectory() && !EXCLUDES.contains(dir.getName());
         }
 
         @Override
-        public boolean accept(File file, String string) {
+        public boolean accept(File dir, String name) {
           return true;
         }
       });
