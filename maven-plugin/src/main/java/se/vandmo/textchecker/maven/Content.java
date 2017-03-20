@@ -13,13 +13,14 @@ import java.util.regex.Pattern;
 
 import com.google.common.io.Files;
 
+import se.vandmo.textchecker.maven.utils.FileUtils;
 import se.vandmo.textchecker.maven.utils.LineChecker;
 import se.vandmo.textchecker.maven.utils.LineModifier;
 
 
-public class Content {
+public final class Content {
 
-  private static final Pattern linePattern = compile("\\r?\\n");
+  private static final Pattern LINE_PATTERN = compile("\\r?\\n");
 
   private final ContentType type;
   private String data;
@@ -35,7 +36,7 @@ public class Content {
 
   public static Content contentFromFile(File file) throws IOException {
     String data = Files.toString(file, UTF_8);
-    return new Content(guessType(file), data, file.canExecute());
+    return new Content(guessType(file), data, FileUtils.isExecutable(file.toPath()));
   }
 
   public ContentType type() {
@@ -60,14 +61,14 @@ public class Content {
 
   public void modifyLines(LineModifier modifier) {
     StringBuilder result = new StringBuilder();
-    for (String line : linePattern.split(data)) {
+    for (String line : LINE_PATTERN.split(data)) {
       result.append(modifier.modify(line)).append(lineSeparator());
     }
     data = result.toString();
   }
 
   public boolean checkLines(LineChecker checker) {
-    for (String line : linePattern.split(data)) {
+    for (String line : LINE_PATTERN.split(data)) {
       if (!checker.check(line)) {
         return false;
       }
@@ -84,7 +85,7 @@ public class Content {
 
   public void writeTo(File file) throws IOException {
     Files.write(data, file, UTF_8);
-    file.setExecutable(executable);
+    FileUtils.setExecutable(file.toPath(), executable);
   }
 
 }
