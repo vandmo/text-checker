@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class FileSupplier {
 
-  private static final ImmutableSet<String> EXCLUDES = ImmutableSet.of("target", ".git", ".junk");
+  private static final ImmutableSet<String> EXCLUDES = ImmutableSet.of("target", ".git", ".junk", ".m2");
 
   private final File baseFolder;
 
