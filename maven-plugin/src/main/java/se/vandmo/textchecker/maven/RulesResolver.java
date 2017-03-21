@@ -10,7 +10,6 @@ import se.vandmo.textchecker.maven.rules.EndsWithLineSeparator;
 import se.vandmo.textchecker.maven.rules.NoTabs;
 import se.vandmo.textchecker.maven.rules.NoTrailingWhitespaceOnNonBlankLines;
 import se.vandmo.textchecker.maven.rules.NoWhitespaceOnBlankLines;
-import se.vandmo.textchecker.maven.rules.NotExecutable;
 
 
 public final class RulesResolver {
@@ -20,7 +19,6 @@ public final class RulesResolver {
       new NoTabs(),
       new NoTrailingWhitespaceOnNonBlankLines(),
       new NoWhitespaceOnBlankLines(),
-      new NotExecutable(),
       new ConsistentLineSeparator(),
       new EndsWithLineSeparator());
   }
