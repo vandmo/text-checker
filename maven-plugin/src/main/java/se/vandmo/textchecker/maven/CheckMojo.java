@@ -2,11 +2,11 @@ package se.vandmo.textchecker.maven;
 
 import static com.google.common.collect.Collections2.transform;
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Collections.emptyList;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -28,6 +28,9 @@ public final class CheckMojo extends AbstractMojo {
     readonly = true)
   private File baseFolder;
 
+  @Parameter
+  private List<String> excludes;
+
   private final Checker checker = new Checker(new RulesResolver());
 
   @Override
@@ -44,7 +47,7 @@ public final class CheckMojo extends AbstractMojo {
   }
 
   private void addComplaintsForFiles(List<ComplaintWithFileInfo> complaints) throws Exception {
-    FileSupplier fileSupplier = new FileSupplier(baseFolder);
+    FileSupplier fileSupplier = new FileSupplier(baseFolder, excludes == null ? emptyList() : excludes);
     for (File file : fileSupplier.getFiles()) {
       complaints.addAll(getComplaintsFor(file, fileSupplier));
     }

@@ -1,18 +1,18 @@
 package se.vandmo.textchecker.maven;
 
+import static java.util.Collections.emptyList;
 import static se.vandmo.textchecker.maven.Content.contentFromFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-
+import java.util.List;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-
 import se.vandmo.textchecker.maven.annotations.FixWith;
 
 
@@ -27,6 +27,9 @@ public final class FixMojo extends AbstractMojo {
     readonly = true)
   private File baseFolder;
 
+  @Parameter
+  private List<String> excludes;
+
   private final RulesResolver rulesResolver = new RulesResolver();
 
   private final Checker checker = new Checker(rulesResolver);
@@ -34,7 +37,7 @@ public final class FixMojo extends AbstractMojo {
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
     try {
-      FileSupplier fileSupplier = new FileSupplier(baseFolder);
+      FileSupplier fileSupplier = new FileSupplier(baseFolder, excludes == null ? emptyList() : excludes);
       for (File file : fileSupplier.getFiles()) {
         if (hasComplaints(file)) {
           fix(file);
