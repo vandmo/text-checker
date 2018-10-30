@@ -1,3 +1,4 @@
 language: java
+install: true
 script: mvn clean verify --define gpg.skip
 
