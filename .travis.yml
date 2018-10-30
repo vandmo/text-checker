@@ -3,13 +3,13 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_408b1194d341_key -iv $encrypted_408b1194d341_iv
   -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
 install: true
-script: mvn clean verify --define gpg.skip
+script: mvn clean verify --batch-mode --define gpg.skip
 after_success:
 - mvn versions:set --newVersion=0.19.${TRAVIS_BUILD_NUMBER}
 - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
 - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
   --import deployment/signingkey.asc
-- mvn clean deploy --settings deployment/settings.xml -Dgpg.executable=gpg2 -Dgpg.keyname=B07746099C297F239C1C4343E16B0657F1774582
+- mvn clean deploy --batch-mode --settings deployment/settings.xml -Dgpg.executable=gpg2 -Dgpg.keyname=B07746099C297F239C1C4343E16B0657F1774582
   -Dgpg.passphrase=$PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg
 env:
   global:
