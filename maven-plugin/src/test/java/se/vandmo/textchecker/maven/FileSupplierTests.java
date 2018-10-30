@@ -25,7 +25,7 @@ public final class FileSupplierTests {
         .stream()
         .map(file -> testCaseRoot.relativize(file.toPath()).toString())
         .collect(toSet());
-    assertEquals(new HashSet(asList(
+    assertEquals(new HashSet<>(asList(
         "included.html",
         "included.txt",
         "folder/included.yaml")), matchedFiles);
