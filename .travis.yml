@@ -6,10 +6,11 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_408b1194d341_key -iv $encrypted_408b1194d341_iv
   -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
 install: true
-script: mvn clean verify --batch-mode --define gpg.skip
+script: mvn clean verify --file pom.xml --batch-mode --define gpg.skip
 after_success:
 - >
   mvn versions:set
+  --file maven-plugin/pom.xml
   --batch-mode
   --define newVersion=0.19.${TRAVIS_BUILD_NUMBER}
 - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
@@ -17,6 +18,7 @@ after_success:
   --import deployment/signingkey.asc
 - >
   mvn clean deploy
+  --file maven-plugin/pom.xml
   --batch-mode
   --settings deployment/settings.xml
   --define gpg.executable=gpg2
