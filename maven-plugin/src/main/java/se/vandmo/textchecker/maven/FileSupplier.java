@@ -2,12 +2,12 @@ package se.vandmo.textchecker.maven;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
-import static se.vandmo.textchecker.maven.utils.PathMatchers.anyName;
+import static se.vandmo.textchecker.maven.utils.PathMatchers.any;
+import static se.vandmo.textchecker.maven.utils.PathMatchers.anyFolder;
 import static se.vandmo.textchecker.maven.utils.PathMatchers.endsWithAny;
 import static se.vandmo.textchecker.maven.utils.PathMatchers.ofEitherGlob;
 import static se.vandmo.textchecker.maven.utils.PathMatchers.relativized;
 
-import com.google.common.collect.ImmutableSet;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -24,19 +24,28 @@ import java.util.List;
 
 public final class FileSupplier {
 
-  private static final ImmutableSet<String> BUILT_IN_FOLDER_EXCLUDES = ImmutableSet.of("target", ".git", ".junk", ".m2");
-  private static Collection<String> TEXT_FILE_SUFFIXES = asList(".java", ".txt", ".xml", ".js", ".html");
+  private static final List<String> DEFAULT_EXCLUDED_FOLDERS = asList(
+      "target", ".git", ".junk", ".m2");
+  private static final Collection<String> TEXT_FILE_SUFFIXES = asList(
+      ".java", ".txt", ".xml", ".js", ".html", ".md", ".adoc", ".yml", ".yaml", ".json");
 
   private final Path base;
   private final PathMatcher excludesMatcher;
   private final PathMatcher suffixMatcher;
-  private final PathMatcher builtInFolderExcludesMatcher;
 
-  public FileSupplier(File baseFolder, List<String> excludes) {
-    this.base = baseFolder.toPath();
-    excludesMatcher = relativized(base, ofEitherGlob(excludes));
+  public FileSupplier(Path base, List<String> excludes, boolean useDefaultExcludes) {
+    this.base = base;
+    excludesMatcher = excludesMatcher(this.base, excludes, useDefaultExcludes);
     suffixMatcher = relativized(base, endsWithAny(TEXT_FILE_SUFFIXES));
-    builtInFolderExcludesMatcher = relativized(base, anyName(BUILT_IN_FOLDER_EXCLUDES));
+  }
+
+  private static PathMatcher excludesMatcher(Path base, List<String> excludes, boolean useDefaultExcludes) {
+    PathMatcher excludesMatcher = relativized(base, ofEitherGlob(excludes));
+    if (useDefaultExcludes) {
+      return any(excludesMatcher, anyFolder(DEFAULT_EXCLUDED_FOLDERS));
+    } else {
+      return excludesMatcher;
+    }
   }
 
   public List<File> getFiles() {
@@ -45,7 +54,7 @@ public final class FileSupplier {
       Files.walkFileTree(base, new SimpleFileVisitor<Path>() {
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-          if (builtInFolderExcludesMatcher.matches(dir) || excludesMatcher.matches(dir)) {
+          if (excludesMatcher.matches(dir)) {
             return FileVisitResult.SKIP_SUBTREE;
           }
           return FileVisitResult.CONTINUE;

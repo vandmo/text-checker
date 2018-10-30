@@ -1,5 +1,6 @@
 package se.vandmo.textchecker.maven.utils;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableSet;
 import static org.apache.commons.lang3.StringUtils.removeEnd;
@@ -49,6 +50,15 @@ public final class PathMatchers {
     return FileSystems.getDefault().getPathMatcher("glob:" + glob);
   }
 
+  public static PathMatcher any(PathMatcher... matcher) {
+    return any(asList(matcher));
+  }
+
+  public static PathMatcher any(List<PathMatcher> matchers) {
+    List<PathMatcher> copiedMatchersList = unmodifiableList(new ArrayList<>(matchers));
+    return path -> anyMatches(path, copiedMatchersList);
+  }
+
   public static PathMatcher endsWithAny(Collection<String> suffixes) {
     List<String> copiedSuffixes = unmodifiableList(new ArrayList<>(suffixes));
     return path -> endsWithAny(path.toString(), copiedSuffixes);
@@ -57,6 +67,11 @@ public final class PathMatchers {
   public static PathMatcher anyName(Collection<String> names) {
     Set<String> copiedNames = unmodifiableSet(new HashSet<>(names));
     return path -> copiedNames.contains(path.getFileName().toString());
+  }
+
+  public static PathMatcher anyFolder(Collection<String> names) {
+    Set<String> copiedNames = unmodifiableSet(new HashSet<>(names));
+    return path -> Files.isDirectory(path) && copiedNames.contains(path.getFileName().toString());
   }
 
   public static PathMatcher relativized(Path base, PathMatcher matcher) {

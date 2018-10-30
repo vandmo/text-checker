@@ -31,6 +31,9 @@ public final class CheckMojo extends AbstractMojo {
   @Parameter
   private List<String> excludes;
 
+  @Parameter(defaultValue = "true")
+  private boolean useDefaultExcludes;
+
   private final Checker checker = new Checker(new RulesResolver());
 
   @Override
@@ -47,7 +50,10 @@ public final class CheckMojo extends AbstractMojo {
   }
 
   private void addComplaintsForFiles(List<ComplaintWithFileInfo> complaints) throws Exception {
-    FileSupplier fileSupplier = new FileSupplier(baseFolder, excludes == null ? emptyList() : excludes);
+    FileSupplier fileSupplier = new FileSupplier(
+        baseFolder.toPath(),
+        excludes == null ? emptyList() : excludes,
+        useDefaultExcludes);
     for (File file : fileSupplier.getFiles()) {
       complaints.addAll(getComplaintsFor(file, fileSupplier));
     }

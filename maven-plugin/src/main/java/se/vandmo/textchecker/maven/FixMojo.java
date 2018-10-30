@@ -30,6 +30,9 @@ public final class FixMojo extends AbstractMojo {
   @Parameter
   private List<String> excludes;
 
+  @Parameter(defaultValue = "true")
+  private boolean useDefaultExcludes;
+
   private final RulesResolver rulesResolver = new RulesResolver();
 
   private final Checker checker = new Checker(rulesResolver);
@@ -37,7 +40,10 @@ public final class FixMojo extends AbstractMojo {
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
     try {
-      FileSupplier fileSupplier = new FileSupplier(baseFolder, excludes == null ? emptyList() : excludes);
+      FileSupplier fileSupplier = new FileSupplier(
+          baseFolder.toPath(),
+          excludes == null ? emptyList() : excludes,
+          useDefaultExcludes);
       for (File file : fileSupplier.getFiles()) {
         if (hasComplaints(file)) {
           fix(file);
