@@ -5,7 +5,7 @@ before_install:
 install: true
 script: mvn clean verify --batch-mode --define gpg.skip
 after_success:
-- mvn versions:set --newVersion=0.19.${TRAVIS_BUILD_NUMBER}
+- mvn versions:set --batch-mode --define newVersion=0.19.${TRAVIS_BUILD_NUMBER}
 - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
 - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
   --import deployment/signingkey.asc
