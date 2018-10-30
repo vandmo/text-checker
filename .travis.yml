@@ -4,8 +4,8 @@ before_install:
   -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
 install: true
 script: mvn clean verify --define gpg.skip
-before_deploy: mvn versions:set --newVersion=${TRAVIS_TAG}
 after_success:
+- mvn versions:set --newVersion=${TRAVIS_TAG}
 - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
 - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
   --import deployment/signingkey.asc
