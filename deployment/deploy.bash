@@ -18,5 +18,5 @@ mvn clean deploy \
   --define gpg.passphrase=${PASSPHRASE} \
   --define gpg.publicKeyring=${TRAVIS_BUILD_DIR}/pubring.gpg \
   --define gpg.secretKeyring=${TRAVIS_BUILD_DIR}/secring.gpg \
-  --define maven.skip.install=true
+  --define maven.skip.install=true \
   --define maven.test.skip=true
