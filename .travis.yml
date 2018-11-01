@@ -5,7 +5,12 @@ cache:
 before_install:
 - bash deployment/decrypt.bash
 install: true
-script: mvn clean verify --file pom.xml --batch-mode --define gpg.skip
+script: >
+  mvn clean verify
+  --file pom.xml
+  --batch-mode
+  --define gpg.skip
+  --activate-profiles analyze
 deploy:
   provider: script
   on:
