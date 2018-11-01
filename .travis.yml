@@ -3,13 +3,11 @@ cache:
   directories:
   - $HOME/.m2
 before_install:
-- openssl aes-256-cbc -K $encrypted_408b1194d341_key -iv $encrypted_408b1194d341_iv
-  -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+- bash deployment/decrypt.bash
 install: true
 script: mvn clean verify --file pom.xml --batch-mode --define gpg.skip
 deploy:
   provider: script
-  skip_cleanup: true
   on:
     tags: true
   script: bash deployment/deploy.bash

@@ -5,6 +5,7 @@ mvn versions:set \
   --batch-mode \
   --define newVersion=${TRAVIS_TAG}
 
+bash deployment/decrypt.bash
 gpg2 --keyring=${TRAVIS_BUILD_DIR}/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
 gpg2 --allow-secret-key-import --keyring=${TRAVIS_BUILD_DIR}/secring.gpg --no-default-keyring --import deployment/signingkey.asc || true
 
@@ -18,3 +19,4 @@ mvn clean deploy \
   --define gpg.publicKeyring=${TRAVIS_BUILD_DIR}/pubring.gpg \
   --define gpg.secretKeyring=${TRAVIS_BUILD_DIR}/secring.gpg \
   --define maven.skip.install=true
+  --define maven.test.skip=true
