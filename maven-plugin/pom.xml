@@ -145,6 +145,18 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -170,7 +182,7 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
           <configuration>
-            <retryFailedDeploymentCount>5</retryFailedDeploymentCount>
+            <skip>true</skip>
           </configuration>
         </plugin>
       </plugins>
@@ -182,10 +194,6 @@
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
   </distributionManagement>
 
   <scm>
