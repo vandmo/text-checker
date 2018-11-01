@@ -5,7 +5,6 @@ mvn versions:set \
   --batch-mode \
   --define newVersion=${TRAVIS_TAG}
 
-ls -larth deployment
 gpg2 --keyring=${TRAVIS_BUILD_DIR}/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
 gpg2 --allow-secret-key-import --keyring=${TRAVIS_BUILD_DIR}/secring.gpg --no-default-keyring --import deployment/signingkey.asc
 

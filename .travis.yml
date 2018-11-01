@@ -9,6 +9,7 @@ install: true
 script: mvn clean verify --file pom.xml --batch-mode --define gpg.skip
 deploy:
   provider: script
+  skip_cleanup: true
   on:
     tags: true
   script: bash deployment/deploy.bash
