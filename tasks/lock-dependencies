@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eux -o pipefail
+
+mvn --file maven-plugin/pom.xml se.vandmo:dependency-lock-maven-plugin:lock
+
