@@ -110,7 +110,7 @@
   }, {
     "groupId" : "org.codehaus.plexus",
     "artifactId" : "plexus-utils",
-    "version" : "3.0.20",
+    "version" : "3.4.1",
     "scope" : "compile",
     "type" : "jar"
   }, {
