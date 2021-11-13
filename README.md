@@ -8,7 +8,7 @@ Make basic validations on a variety of text files.
     <plugin>
       <groupId>se.vandmo</groupId>
       <artifactId>text-checker-maven-plugin</artifactId>
-      <version>0.17</version>
+      <version>0.22</version>
       <executions>
         <execution>
           <id>check</id>
