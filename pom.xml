@@ -236,6 +236,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <format>pom</format>
+        </configuration>
       </plugin>
     </plugins>
     <pluginManagement>

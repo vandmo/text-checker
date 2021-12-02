@@ -21,7 +21,7 @@ jobs:
           --activate-profiles analyze
           verify
           com.github.spotbugs:spotbugs-maven-plugin:4.4.2:spotbugs
-          com.github.spotbugs:spotbugs-maven-plugin:4.4.2:check --define spotbugs.excludeFilterFile=spotbugs-suppressions.xml
+          com.github.spotbugs:spotbugs-maven-plugin:4.4.2:check
 
   release:
     needs: test
