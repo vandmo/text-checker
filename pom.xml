@@ -227,7 +227,7 @@
       <plugin>
         <groupId>se.vandmo</groupId>
         <artifactId>dependency-lock-maven-plugin</artifactId>
-        <version>0.19.0</version>
+        <version>0.23</version>
         <executions>
           <execution>
             <id>check</id>
