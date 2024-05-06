@@ -20,14 +20,14 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - run: >
-          mkdir /tumporary/
+          mkdir ${{ github.workspace }}/tumporary/
       - run: >
           mvn 
           -Dfile=message.txt
-          -Durl=file:///tumporary/
+          -Durl=file://${{ github.workspace }}/tumporary/
           org.apache.maven.plugins:maven-gpg-plugin:3.2.4:sign-and-deploy-file
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
       - uses: actions/upload-artifact@v4
         with:
-          path: /tumporary/
+          path: ${{ github.workspace }}
