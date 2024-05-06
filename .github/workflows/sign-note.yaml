@@ -25,6 +25,9 @@ jobs:
           mvn 
           -Dfile=message.txt
           -Durl=file://${{ github.workspace }}/tumporary/
+          -DgroupId=se.vandmo
+          -DartifactId=note
+          -Dversion=0
           org.apache.maven.plugins:maven-gpg-plugin:3.2.4:sign-and-deploy-file
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
