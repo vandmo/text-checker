@@ -1,0 +1,5 @@
+This message is for central-support@sonatype.com and is made to prove that
+the current owner, 2024-05-06, of vandmo.se is also in possession of the
+private GnuPG key used to create https://repo1.maven.org/maven2/se/vandmo/dependency-lock-maven-plugin/1.0.2/dependency-lock-maven-plugin-1.0.2.pom.asc
+
+This message is not intended to be used for any other purpose, now or at a later time.
