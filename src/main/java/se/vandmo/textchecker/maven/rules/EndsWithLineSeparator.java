@@ -1,10 +1,9 @@
 package se.vandmo.textchecker.maven.rules;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
 import java.util.Collection;
-
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Rule;
@@ -18,7 +17,7 @@ public final class EndsWithLineSeparator implements Rule {
   public Collection<Complaint> check(Content content) {
     String data = content.data();
     if (!isOk(data)) {
-      return newArrayList(new Complaint("File does not end with line separator"));
+      return asList(new Complaint("File does not end with line separator"));
     }
     return emptyList();
   }
@@ -26,5 +25,4 @@ public final class EndsWithLineSeparator implements Rule {
   public static boolean isOk(String data) {
     return data.endsWith("\n");
   }
-
 }

@@ -15,20 +15,13 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import se.vandmo.textchecker.maven.annotations.FixWith;
 
-
-@Mojo(
-  name = "fix",
-  requiresDependencyResolution = ResolutionScope.COMPILE)
+@Mojo(name = "fix", requiresDependencyResolution = ResolutionScope.COMPILE)
 public final class FixMojo extends AbstractMojo {
 
-  @Parameter(
-    defaultValue = "${basedir}",
-    required = true,
-    readonly = true)
+  @Parameter(defaultValue = "${basedir}", required = true, readonly = true)
   private File baseFolder;
 
-  @Parameter
-  private List<String> excludes;
+  @Parameter private List<String> excludes;
 
   @Parameter(defaultValue = "true")
   private boolean useDefaultExcludes;
@@ -40,10 +33,9 @@ public final class FixMojo extends AbstractMojo {
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
     try {
-      FileSupplier fileSupplier = new FileSupplier(
-          baseFolder.toPath(),
-          excludes == null ? emptyList() : excludes,
-          useDefaultExcludes);
+      FileSupplier fileSupplier =
+          new FileSupplier(
+              baseFolder.toPath(), excludes == null ? emptyList() : excludes, useDefaultExcludes);
       for (File file : fileSupplier.getFiles()) {
         if (hasComplaints(file)) {
           fix(file);
@@ -74,9 +66,8 @@ public final class FixMojo extends AbstractMojo {
     Class<? extends Fixer> fixerClass = rule.getClass().getAnnotation(FixWith.class).value();
     try {
       return fixerClass.newInstance();
-    } catch (InstantiationException|IllegalAccessException ex) {
+    } catch (InstantiationException | IllegalAccessException ex) {
       throw new RuntimeException(ex);
     }
   }
-
 }

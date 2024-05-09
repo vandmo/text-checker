@@ -1,11 +1,10 @@
 package se.vandmo.textchecker.maven.rules;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.Collection;
-
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Rule;
@@ -18,7 +17,7 @@ public final class NoWhitespaceOnBlankLines implements Rule {
   @Override
   public Collection<Complaint> check(Content content) {
     if (!content.checkLines(NoWhitespaceOnBlankLines::isOk)) {
-      return newArrayList(new Complaint("File contains whitespace on blank line"));
+      return asList(new Complaint("File contains whitespace on blank line"));
     }
     return emptyList();
   }
@@ -26,5 +25,4 @@ public final class NoWhitespaceOnBlankLines implements Rule {
   public static boolean isOk(String line) {
     return isNotBlank(line) || line.length() == 0;
   }
-
 }

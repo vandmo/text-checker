@@ -30,10 +30,8 @@ public final class PathMatchers {
 
   public static PathMatcher ofEitherGlob(Collection<String> globs) {
     List<PathMatcher> matchers =
-        unmodifiableList(globs
-                .stream()
-                .map(glob -> globMatcher(glob))
-                .collect(Collectors.toList()));
+        unmodifiableList(
+            globs.stream().map(glob -> globMatcher(glob)).collect(Collectors.toList()));
     return path -> anyMatches(path, matchers);
   }
 
@@ -86,5 +84,4 @@ public final class PathMatchers {
     }
     return false;
   }
-
 }

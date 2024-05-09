@@ -6,14 +6,14 @@ import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.ContentType;
 import se.vandmo.textchecker.maven.Fixer;
 
-
 public final class ChangeIndentationToEven implements Fixer {
 
   @Override
   public void fix(Content content) {
-    content.modifyLines((line) -> {
-      return possiblyFixLine(content.type(), line);
-    });
+    content.modifyLines(
+        (line) -> {
+          return possiblyFixLine(content.type(), line);
+        });
   }
 
   private String possiblyFixLine(ContentType contentType, String line) {
@@ -26,5 +26,4 @@ public final class ChangeIndentationToEven implements Fixer {
   private String fixLine(String line) {
     return " " + line;
   }
-
 }

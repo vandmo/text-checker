@@ -1,10 +1,10 @@
 package se.vandmo.textchecker.maven;
 
-import static com.google.common.collect.Collections2.transform;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.apache.maven.plugin.AbstractMojo;
@@ -15,21 +15,16 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
-
 @Mojo(
-  name = "check",
-  defaultPhase = LifecyclePhase.GENERATE_SOURCES,
-  requiresDependencyResolution = ResolutionScope.COMPILE)
+    name = "check",
+    defaultPhase = LifecyclePhase.GENERATE_SOURCES,
+    requiresDependencyResolution = ResolutionScope.COMPILE)
 public final class CheckMojo extends AbstractMojo {
 
-  @Parameter(
-    defaultValue = "${basedir}",
-    required = true,
-    readonly = true)
+  @Parameter(defaultValue = "${basedir}", required = true, readonly = true)
   private File baseFolder;
 
-  @Parameter
-  private List<String> excludes;
+  @Parameter private List<String> excludes;
 
   @Parameter(defaultValue = "true")
   private boolean useDefaultExcludes;
@@ -38,7 +33,7 @@ public final class CheckMojo extends AbstractMojo {
 
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
-    List<ComplaintWithFileInfo> complaints = newArrayList();
+    List<ComplaintWithFileInfo> complaints = new ArrayList<>();
     try {
       addComplaintsForFiles(complaints);
     } catch (Exception ex) {
@@ -50,24 +45,28 @@ public final class CheckMojo extends AbstractMojo {
   }
 
   private void addComplaintsForFiles(List<ComplaintWithFileInfo> complaints) throws Exception {
-    FileSupplier fileSupplier = new FileSupplier(
-        baseFolder.toPath(),
-        excludes == null ? emptyList() : excludes,
-        useDefaultExcludes);
+    FileSupplier fileSupplier =
+        new FileSupplier(
+            baseFolder.toPath(), excludes == null ? emptyList() : excludes, useDefaultExcludes);
     for (File file : fileSupplier.getFiles()) {
       complaints.addAll(getComplaintsFor(file, fileSupplier));
     }
   }
 
-  private Collection<ComplaintWithFileInfo> getComplaintsFor(File file, FileSupplier fileNameResolver) throws Exception {
-    return transform(checker.getComplaintsFor(file),
-      complaint -> new ComplaintWithFileInfo(complaint, fileNameResolver.relativeFileNameFor(file)));
+  private Collection<ComplaintWithFileInfo> getComplaintsFor(
+      File file, FileSupplier fileNameResolver) throws Exception {
+    return checker.getComplaintsFor(file).stream()
+        .map(
+            complaint ->
+                new ComplaintWithFileInfo(complaint, fileNameResolver.relativeFileNameFor(file)))
+        .collect(toList());
   }
 
   private void logAndFail(List<ComplaintWithFileInfo> complaints) throws MojoFailureException {
     log(complaints);
     throw new MojoFailureException(
-      "One or more rules was broken. Try running \"mvn se.vandmo:text-checker-maven-plugin:fix\" to fix the complaints.");
+        "One or more rules was broken. Try running \"mvn se.vandmo:text-checker-maven-plugin:fix\""
+            + " to fix the complaints.");
   }
 
   private void log(List<ComplaintWithFileInfo> complaints) {
@@ -76,5 +75,4 @@ public final class CheckMojo extends AbstractMojo {
       getLog().error(filePath + " " + complaintWithFile.getComplaint().getMessage());
     }
   }
-
 }

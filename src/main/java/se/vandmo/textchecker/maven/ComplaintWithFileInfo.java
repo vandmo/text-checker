@@ -1,7 +1,6 @@
 package se.vandmo.textchecker.maven;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import static java.util.Objects.requireNonNull;
 
 public final class ComplaintWithFileInfo {
 
@@ -9,8 +8,8 @@ public final class ComplaintWithFileInfo {
   private final String fileName;
 
   public ComplaintWithFileInfo(Complaint complaint, String fileName) {
-    checkNotNull(complaint);
-    checkNotNull(fileName);
+    requireNonNull(complaint);
+    requireNonNull(fileName);
     this.complaint = complaint;
     this.fileName = fileName;
   }
@@ -22,5 +21,4 @@ public final class ComplaintWithFileInfo {
   public String getFileName() {
     return fileName;
   }
-
 }

@@ -6,14 +6,12 @@ import static se.vandmo.textchecker.maven.rules.EndsWithLineSeparator.isOk;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Fixer;
 
-
 public final class AddEndingLineSeparator implements Fixer {
 
   @Override
   public void fix(Content content) {
     if (!isOk(content.data())) {
-      content.data(content.data()+lineSeparator());
+      content.data(content.data() + lineSeparator());
     }
   }
-
 }

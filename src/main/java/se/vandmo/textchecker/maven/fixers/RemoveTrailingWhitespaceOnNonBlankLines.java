@@ -4,19 +4,18 @@ import static se.vandmo.textchecker.maven.rules.NoTrailingWhitespaceOnNonBlankLi
 import static se.vandmo.textchecker.maven.rules.NoTrailingWhitespaceOnNonBlankLines.isOk;
 
 import java.util.regex.Matcher;
-
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.ContentType;
 import se.vandmo.textchecker.maven.Fixer;
-
 
 public final class RemoveTrailingWhitespaceOnNonBlankLines implements Fixer {
 
   @Override
   public void fix(Content content) {
-    content.modifyLines((line) -> {
-      return possiblyFixLine(line, content.type());
-    });
+    content.modifyLines(
+        (line) -> {
+          return possiblyFixLine(line, content.type());
+        });
   }
 
   private String possiblyFixLine(String line, ContentType contentType) {
@@ -29,5 +28,4 @@ public final class RemoveTrailingWhitespaceOnNonBlankLines implements Fixer {
     }
     return matcher.group("beforetrailing");
   }
-
 }

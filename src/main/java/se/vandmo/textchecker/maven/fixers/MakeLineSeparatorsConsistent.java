@@ -7,7 +7,6 @@ import static org.apache.commons.lang3.StringUtils.replace;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Fixer;
 
-
 public final class MakeLineSeparatorsConsistent implements Fixer {
 
   @Override
@@ -20,5 +19,4 @@ public final class MakeLineSeparatorsConsistent implements Fixer {
     data = replace(data, "\n", lineSeparator());
     return data;
   }
-
 }

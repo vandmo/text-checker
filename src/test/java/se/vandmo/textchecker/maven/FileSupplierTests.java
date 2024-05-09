@@ -20,14 +20,12 @@ public final class FileSupplierTests {
   public void defaultExcludes() throws IOException {
     Path testCaseRoot = ROOT.resolve("default-excludes");
     FileSupplier supplier = new FileSupplier(testCaseRoot, emptyList(), true);
-    Set<String> matchedFiles = supplier
-        .getFiles()
-        .stream()
-        .map(file -> testCaseRoot.relativize(file.toPath()).toString())
-        .collect(toSet());
-    assertEquals(new HashSet<>(asList(
-        "included.html",
-        "included.txt",
-        "folder/included.yaml")), matchedFiles);
+    Set<String> matchedFiles =
+        supplier.getFiles().stream()
+            .map(file -> testCaseRoot.relativize(file.toPath()).toString())
+            .collect(toSet());
+    assertEquals(
+        new HashSet<>(asList("included.html", "included.txt", "folder/included.yaml")),
+        matchedFiles);
   }
 }

@@ -11,5 +11,4 @@ public final class Complaint {
   public String getMessage() {
     return message;
   }
-
 }

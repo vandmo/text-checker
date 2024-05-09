@@ -1,16 +1,14 @@
 package se.vandmo.textchecker.maven.rules;
 
-import se.vandmo.textchecker.maven.annotations.FixWith;
-
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
 import java.util.Collection;
 import java.util.regex.Pattern;
-
 import se.vandmo.textchecker.maven.Complaint;
 import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.Rule;
+import se.vandmo.textchecker.maven.annotations.FixWith;
 import se.vandmo.textchecker.maven.fixers.MakeLineSeparatorsConsistent;
 
 @FixWith(MakeLineSeparatorsConsistent.class)
@@ -21,7 +19,7 @@ public final class ConsistentLineSeparator implements Rule {
   @Override
   public Collection<Complaint> check(Content content) {
     if (!isOk(content.data())) {
-      return newArrayList(new Complaint("File has inconsistent line endings"));
+      return asList(new Complaint("File has inconsistent line endings"));
     }
     return emptyList();
   }
@@ -32,5 +30,4 @@ public final class ConsistentLineSeparator implements Rule {
     }
     return !N_WITHOUT_PRECEEDING_R.matcher(data).matches();
   }
-
 }

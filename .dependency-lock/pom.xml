@@ -12,60 +12,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <version>3.0.2</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:uwnbYpGaUPpbVZBgE75spPx6yy6HRV+sXq+e3i5Bzou6/A5aOFpWEmTqTNcbu9PvWkXgLWMneiAdBqCuFjb4BA==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_annotations</artifactId>
-      <version>2.18.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:POqGvpS7iuQNIa1L99f2siM+iVk7e3Qa2Ex4hAzTg3u1E29S5i/prglT17GQxGrT7cEC36l7TH6kcqgCBr9dtw==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>failureaccess</artifactId>
-      <version>1.0.1</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:+NWbgI1rphclIwW2bVWQk32psrhD1JLQa40LGx85fjnzYNWBdwd5e5eaW/IL8hmHs1Mz56FcRO10Af6i0hGcrg==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>32.0.0-jre</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:Ldeqk046x5k+0+c/7OGe7pc975cCjPon26Juo8LIuH+kCIlAAsGetIQA+1ftabIhk4GYS2KLSwY8p6NORQiFdQ==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>listenablefuture</artifactId>
-      <version>9999.0-empty-to-avoid-conflict-with-guava</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:xZh6l5F0y6yuLnizGfCAQgzHG82894k3RXMe65PCPtE7/41FmUQfNz86JGAj0z3wPogt4wFe6TKnSndK/dB4Lw==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>com.google.j2objc</groupId>
-      <artifactId>j2objc-annotations</artifactId>
-      <version>2.8</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:+CY4aKeStBcHyef+b6VlChTNk/vq+tIO/jdyowWPyTPrWXguxZ5uubnFaaqW2oATSun991R7acRKlwh+/dzu/w==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
       <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
       <version>1.2</version>
@@ -127,15 +73,6 @@
       <scope>compile</scope>
       <optional>false</optional>
       <dependency-lock:integrity>sha512:hZtx2/VmUXkJFN4nnu6EUq+6rikwUeuPC0eyhcWl0DUuoEKs2fZFcbfR3v/oUd67uF9bxtENQEYAzJZESXV9hg==</dependency-lock:integrity>
-    </dependency>
-    <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker-qual</artifactId>
-      <version>3.33.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
-      <optional>false</optional>
-      <dependency-lock:integrity>sha512:BJxEZne3s4bz+1Ab9l4DK98rGymj9UWEgDX/8raDzSdTgM8wLjDupkGvfwgB93m82j2Cpx2SjkF29WT3lmQKZA==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>

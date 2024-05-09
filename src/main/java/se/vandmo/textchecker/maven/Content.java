@@ -1,21 +1,18 @@
 package se.vandmo.textchecker.maven;
 
-import static com.google.common.base.Charsets.UTF_8;
-import static com.google.common.base.Preconditions.checkNotNull;
 import static java.lang.System.lineSeparator;
+import static java.util.Objects.requireNonNull;
 import static java.util.regex.Pattern.compile;
 import static se.vandmo.textchecker.maven.ContentType.JAVA;
 import static se.vandmo.textchecker.maven.ContentType.TEXT;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.regex.Pattern;
-
-import com.google.common.io.Files;
-
 import se.vandmo.textchecker.maven.utils.LineChecker;
 import se.vandmo.textchecker.maven.utils.LineModifier;
-
 
 public final class Content {
 
@@ -25,14 +22,14 @@ public final class Content {
   private String data;
 
   public Content(ContentType type, String data) {
-    checkNotNull(type);
-    checkNotNull(data);
+    requireNonNull(type);
+    requireNonNull(data);
     this.data = data;
     this.type = type;
   }
 
   public static Content contentFromFile(File file) throws IOException {
-    String data = Files.toString(file, UTF_8);
+    String data = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
     return new Content(guessType(file), data);
   }
 
@@ -73,7 +70,6 @@ public final class Content {
   }
 
   public void writeTo(File file) throws IOException {
-    Files.write(data, file, UTF_8);
+    Files.write(file.toPath(), data.getBytes(StandardCharsets.UTF_8));
   }
-
 }

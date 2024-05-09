@@ -8,14 +8,14 @@ import se.vandmo.textchecker.maven.Content;
 import se.vandmo.textchecker.maven.ContentType;
 import se.vandmo.textchecker.maven.Fixer;
 
-
 public final class ChangeIndentationToFour implements Fixer {
 
   @Override
   public void fix(Content content) {
-    content.modifyLines((line) -> {
-      return possiblyFixLine(content.type(), line);
-    });
+    content.modifyLines(
+        (line) -> {
+          return possiblyFixLine(content.type(), line);
+        });
   }
 
   private String possiblyFixLine(ContentType contentType, String line) {
@@ -30,5 +30,4 @@ public final class ChangeIndentationToFour implements Fixer {
     String afterIndentation = line.substring(index);
     return repeat("    ", (index / 4) + 1) + afterIndentation;
   }
-
 }
