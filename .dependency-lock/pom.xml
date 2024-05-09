@@ -86,47 +86,47 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.12.0</version>
+      <version>3.14.0</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:+9vAlDyzSYsBSOhqObdz+XyOYBN0D3Lbxyf66r6kAgc+LMjE1oGY5fxrCKE7dwAjYpLpnUeF8smYny5frBH9gQ==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:Azi1B2cWbldGrabWqi4HHnIh1pkyO/tin38gSylMHcTK0UBhChKe11F5hEO0PnTggYmJx999M8WRWqKXQr6bqA==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.8.1</version>
+      <version>3.13.0</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:u8IIf9Ow+YB5/rU7d1nXs5xvTifbyrw//rVBupSVkH8IAo4KZc0nLJSmvilx6XsKnigYFbatoWtuBQrftTTVDA==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:vMX61jTgCVhGgV1h7Wy32qIe1y0pAN/ZdC3gfkUIrfkoQsEcDNd/023qvr3qc+lbSmOgaex8Etu9xuBTIOCg0A==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>3.9.0</version>
+      <version>3.9.6</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:+8tkCsP6V/1HCyoMxwXnLSL1BZZlhUpXNjx68Uvzk6514PsgTPtEMZhSVRE3Tw0g9c8KTBDdX1gKAa5dciYFuQ==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:esL56KE8FmswX/IATUZ6nxLqZdCLREzMZRIyOE/DdZLq5sMmPlui18DsJyXOXPsPQBmPioV6OcI3nHLQ9OFkJw==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-model</artifactId>
-      <version>3.9.0</version>
+      <version>3.9.6</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:UQ88/72O0qhB3R1FEZd0bYAi8xKKOuVyeB8c9u43nsRE1Y6RnkFB6LWamvOa73qYobwlS9rS7wQgMuum5Hjbew==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:I06qwL9LlFMyG1oUCy0m7G/3yswCFYyM6+M/RwrGY4D/vgiMsygeNxv0HE82SgDAaJcdFjaRwQYHe+V1uVuJ1Q==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.9.0</version>
+      <version>3.9.6</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:6tgcbAHZtLDBc5e9eKW2uD1y0lCA9/acT+lKXU8liYYdM+J3Z+s7z2qpx860rnUtKr9vBalqT+n7Lv1mbUADhg==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:hZtx2/VmUXkJFN4nnu6EUq+6rikwUeuPC0eyhcWl0DUuoEKs2fZFcbfR3v/oUd67uF9bxtENQEYAzJZESXV9hg==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
@@ -140,47 +140,47 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-classworlds</artifactId>
-      <version>2.6.0</version>
+      <version>2.7.0</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:algEjZ21TmA7nP01Nzz2lbZt2GC+yHjGY7T8U7az1E3VsMkudgNlSRGx945j7yd89rJy/gaaNgmJE4VQVF8nTQ==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:gFe2x9UqqmGlGrpuxhPovRoJTWKoTVCje/53dv9TeA8WArYWkkLDpgsoydSWRYuqrFN3V1VT5K+IFkNJDM2pEg==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-component-annotations</artifactId>
-      <version>1.5.5</version>
+      <version>2.1.0</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:LqSvuIiPFXSDxqjpmFL6ioDpCjzwdWs7Isc6i8WaSqPXtQuXWh2BDyigkAI7Jo2rSa8U6PjjPHVT+mExWv4Gsg==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:zFNP2lQnLwdP6e3VgabD4eqYEnNAx/hSxLSVOkTa0Eis4i36EPMNatzfwV79MZ2sd4oD674g3nd5/R32QFBuiA==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.4.2</version>
+      <version>3.5.1</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:I6VsiOjBJNbWkLouQAe+L6QQCf0MlcFRKYN3Isb1bzDljyxNk6pSsFvTdpbhUL+2nlQT0Wx7btCLqdrVrbI+ug==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:4tTnvJGd6wItD8xCjaBm1iw0oC0kixhP/D7c6gj/vcNUzQGCQLIaBJXq/NAXI6aS5YOAPMsQ2Z+/qX9YpJ+Wfw==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
       <artifactId>org.eclipse.sisu.inject</artifactId>
-      <version>0.3.5</version>
+      <version>0.9.0.M2</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:9HkHaMDZWLNCmjJBq7Ffm7bi/X9DpeA03eajpoIOaUHADxCtCE1cOPjtwUTnrL6nuj3IlS8B2rQeRDgD2ypO/A==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:iVRIIsbBGhZfNui8KdnGnJvPhWNSNDZ82egGUnPYkdHpqBGKKDUCsg0AWU25wSPlmQHK8Ri5JCRpD9az9g8syQ==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
       <artifactId>org.eclipse.sisu.plexus</artifactId>
-      <version>0.3.5</version>
+      <version>0.9.0.M2</version>
       <type>jar</type>
       <scope>compile</scope>
       <optional>false</optional>
-      <dependency-lock:integrity>sha512:ONfb4CP5dRy14wvxVOMWllkDF9x7f3aIEf4PWUBRP86kZlZwzUfQty3thUU7EPfRKbC3QosVWkHJA8e1bJhujQ==</dependency-lock:integrity>
+      <dependency-lock:integrity>sha512:kHu4gli6nZrkZdshnegDB0pncZPzpaBcw2x/z0ExI/UHQrqyMdPreDOVRIu0h5NPhbEpcu/ja3ejLiNVJL707A==</dependency-lock:integrity>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
