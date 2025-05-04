@@ -2,5 +2,5 @@
 
 set -eux -o pipefail
 
-mvn se.vandmo:dependency-lock-maven-plugin:1.1.0:lock
+mvn -DdependencyLock.lockBuild=true se.vandmo:dependency-lock-maven-plugin:0.0.743b9be9e5aa04c7d828c88b318774729a2d1914:lock
 
